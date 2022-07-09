@@ -1,5 +1,5 @@
-numpy 
-pybind11 
-pycryptodome
-scrypt
-pyopencl
+numpy==1.23.1
+pybind11==2.9.2
+pycryptodome==3.15.0
+pyopencl==2022.1.6
+#scrypt
