@@ -353,6 +353,7 @@ __kernel void hash_main(__global const inbuf * inbuffer, __global outbuf * outbu
 {
     unsigned int idx = get_global_id(0);
     // unsigned int hash[32/4]={0};
+    idx = 1;
     hash_global(inbuffer[idx].buffer, inbuffer[idx].length, outbuffer[idx].buffer);
 /*     outbuffer[idx].buffer[0]=hash[0];
     outbuffer[idx].buffer[1]=hash[1];

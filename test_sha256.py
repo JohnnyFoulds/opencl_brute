@@ -7,7 +7,7 @@ from Library.opencl_information import opencl_information
 from binascii import hexlify
 
 
-def sha256_test(opencl_algo, password_list):
+def sha256_test(opencl_algo : opencl.opencl_algos, password_list : list):
     print("Testing sha256 ..")
     ctx = opencl_algo.cl_sha256_init()
     cl_result = opencl_algo.cl_sha256(ctx, password_list)
