@@ -14,6 +14,7 @@ def sha256_test(zimcoin_algo : zimcoin.zimcoin_algos, password_list : list):
     cl_result = zimcoin_algo.cl_hash_single(ctx, password_list)
     
     for i, pwd in enumerate(password_list):
+        # print(cl_result[i])
         print("Password: %s" % pwd)
         print("CL result      : %s" % hexlify(cl_result[i]))
         print("Correct result : %s" % hexlify(hashlib.sha256(pwd).digest()))
@@ -30,7 +31,7 @@ def main(argv):
         return
 
     # Input values to be hashed
-    password_list = [b'password', b'hell']
+    password_list = [b'hels', b'hell']
 
     platform = int(argv[1])
     debug = 0

@@ -60,12 +60,12 @@ class zimcoin_interface(opencl.opencl_interface):
                 # prev code was np.array([pwLen], dtype=np.uint32), this ultimately is equivalent
                 pwArray.extend(pwLen.to_bytes(wordSize, 'little')+pw+(b"\x00"* (inBufSize_bytes - pwLen)))
 
-            print("========= pwArray (bytearray) ============")
-            print(pwArray)
+            # print("========= pwArray (bytearray) ============")
+            # print(pwArray)
 
             if chunkSize == 0:
                 break
-            print("Chunksize = {}".format(chunkSize))
+            # print("Chunksize = {}".format(chunkSize))
 
             # Convert the pwArray into a numpy array, just the once.
             # Declare the numpy array for the digest output
@@ -76,12 +76,12 @@ class zimcoin_interface(opencl.opencl_interface):
             pass_g = cl.Buffer(ctx, cl.mem_flags.READ_ONLY | cl.mem_flags.COPY_HOST_PTR, hostbuf=pwArray)
             result_g = cl.Buffer(ctx, cl.mem_flags.WRITE_ONLY, result.nbytes)
 
-            print("========== pwArray (wordType) ============")
-            print(pwArray)
+            # print("========== pwArray (wordType) ============")
+            # print(pwArray)
 
-            print("=========== Initial buffers ==============")
-            print(" pass_g.nbytes = {}".format(pwArray.nbytes))
-            print(" result_g.nbytes = {}".format(result.nbytes))
+            # print("=========== Initial buffers ==============")
+            # print(" pass_g.nbytes = {}".format(pwArray.nbytes))
+            # print(" result_g.nbytes = {}".format(result.nbytes))
 
             # Call Kernel. Automatically takes care of block/grid distribution
             pwdim = (chunkSize,)
