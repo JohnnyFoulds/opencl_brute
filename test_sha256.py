@@ -18,6 +18,22 @@ def sha256_test(opencl_algo : opencl.opencl_algos, password_list : list):
         print("Correct result : %s" % hexlify(hashlib.sha256(pwd).digest()))
         print("")
 
+def long_test(opencl_algo : opencl.opencl_algos, window_size : int = 100000000):
+    # create the password list
+    password_list = []
+    # 10000000
+    for i in range(0, window_size):
+        password_list.append(b'password' + str(i).encode('utf-8'))
+    
+    ctx = opencl_algo.cl_sha256_init()
+    cl_result = opencl_algo.cl_sha256(ctx, password_list)
+
+    # for i, pwd in enumerate(password_list):
+    #     hashlib.sha256(pwd).digest()
+    #     print("Password: %s" % pwd)
+    #     print("CL result      : %s" % hexlify(cl_result[i]))
+    #     print("Correct result : %s" % hexlify(hashlib.sha256(pwd).digest()))
+    #     print("")
 
 def main(argv):
     if len(argv) < 2:
@@ -36,7 +52,11 @@ def main(argv):
     write_combined_file = True
     opencl_algos = opencl.opencl_algos(platform, debug, write_combined_file, inv_memory_density=1)
 
-    sha256_test(opencl_algos, password_list)
+    #print("============ Initial Test ================")
+    #sha256_test(opencl_algos, password_list)
+
+    print("============== Long Test =================")
+    long_test(opencl_algos)
 
     print("Tests have finished.")
 

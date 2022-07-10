@@ -10,8 +10,8 @@ from binascii import hexlify
 
 def sha256_test(zimcoin_algo : zimcoin.zimcoin_algos, password_list : list):
     print("Testing Zimcoin ..")
-    ctx = zimcoin_algo.cl_hash_init()
-    cl_result = zimcoin_algo.cl_hash(ctx, password_list)
+    ctx = zimcoin_algo.cl_init()
+    cl_result = zimcoin_algo.cl_hash_single(ctx, password_list)
     
     for i, pwd in enumerate(password_list):
         print("Password: %s" % pwd)
@@ -30,7 +30,7 @@ def main(argv):
         return
 
     # Input values to be hashed
-    password_list = [b'password', b'madness']
+    password_list = [b'password', b'hell']
 
     platform = int(argv[1])
     debug = 0
